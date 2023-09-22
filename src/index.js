@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+/*
 const pizzaData = [
   {
     name: "Focaccia",
@@ -45,7 +45,7 @@ const pizzaData = [
     soldOut: false,
   },
 ];
-
+*/
 function App() {
   return (
     <div>
