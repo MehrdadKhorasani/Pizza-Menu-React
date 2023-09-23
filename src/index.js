@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 /*
 const pizzaData = [
   {
@@ -46,9 +47,10 @@ const pizzaData = [
   },
 ];
 */
+
 function App() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
@@ -57,33 +59,57 @@ function App() {
 }
 
 function Header() {
-  return <h1>Fast React Pizza Co.</h1>;
+  // // inline CSS (the easiest way and unpopular)
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  // return <h1 style={style}>Fast React Pizza Co.</h1>;
+
+  // external css (you must export the css file on the first line of this file)
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+  // in external css, each component doesn't use its own styles but simply uses the global styles that are in index.css
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach"
+        photoName="pizzas/spinaci.jpg"
+        price={10} //because we want this data has type of number, we use javasctipt
+      />
+      <Pizza
+        price={12}
+        ingredients="Tomato, mashrooms, cheese"
+        name="Pizza Funghi"
+        photoName="pizzas/funghi.jpg"
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
     </div>
   );
 }
 
 function Footer() {
   return (
-    <footer>{new Date().toLocaleTimeString()}. We're currently open.</footer>
-  );
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizzaIMG" />
-      <h2>Pizza Pepperoni</h2>
-      <p>Tomato, mozarella, pepperoni</p>
-    </div>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()}. We're currently open.
+    </footer>
   );
 }
 
